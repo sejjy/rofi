@@ -1,2 +1,3 @@
-# rofi-launcher
-App launcher, window switcher, file browser, clipboard manager
+# rofi-lab
+
+A collection of custom Rofi launchers, switchers, and more.

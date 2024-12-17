@@ -1,4 +1,4 @@
-/* WiFi and Bluetooth Menu */
+/* WiFi menu */
 
 configuration {
   font:                     "JetBrainsMono Nerd Font 8";

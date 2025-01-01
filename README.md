@@ -1,4 +1,4 @@
-# rofi-lab
+# rofi
 
 A collection of custom Rofi launchers, switchers, and more.
 
@@ -6,7 +6,7 @@ A collection of custom Rofi launchers, switchers, and more.
 
 **Hyprland keybindings:**
 
-```conf
+```properties
 # launch app launcher
 bind = _, _, exec, pkill -x rofi || rofi -show drun -config "$HOME/.config/rofi/app-launcher.rasi"
 

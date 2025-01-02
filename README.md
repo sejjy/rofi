@@ -1,34 +1,19 @@
-# rofi
+## Usage
 
-A collection of custom Rofi launchers, switchers, and more.
-
-## Usage:
-
-**Hyprland keybindings:**
+**Hyprland binds:**
 
 ```properties
-# launch app launcher
-bind = _, _, exec, pkill -x rofi || rofi -show drun -config "$HOME/.config/rofi/app-launcher.rasi"
-
-# launch window switcher
-bind = _, _, exec, pkill -x rofi || rofi -show window -config "$HOME/.config/rofi/window-switcher.rasi"
-
-# launch clipboard
-bind = _, _, exec, pkill -x rofi || cliphist list | rofi -dmenu -p " " -display-columns 2 -config "$HOME/.config/rofi/clipboard.rasi" | cliphist decode | wl-copy
-
-# launch power menu
-bind = _, _, exec, pkill -x rofi || $HOME/.config/waybar/scripts/power-menu.sh
+# Rofi:
+bind = $mainMod, A, exec, ~/.config/hypr/scripts/rofi.sh app            # app launcher
+bind = $mainMod, W, exec, ~/.config/hypr/scripts/rofi.sh window         # window switcher
+bind = $mainMod, V, exec, ~/.config/hypr/scripts/rofi.sh clipboard      # clipboard
+bind = $mainMod, Backspace, exec, ~/.config/hypr/scripts/rofi.sh power  # power menu
 ```
 
 **Waybar modules:**
 
 ```jsonc
-// wi-fi menu
-"on-click": "~/.config/waybar/scripts/wifi-menu.sh",
-
-// bluetooth menu
-"on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
-
-// power menu
-"on-click": "~/.config/waybar/scripts/power-menu.sh"
+"on-click": "~/.config/waybar/scripts/wifi-menu.sh"       // wi-fi menu
+"on-click": "~/.config/waybar/scripts/bluetooth-menu.sh"  // bluetooth menu
+"on-click": "~/.config/waybar/scripts/power-menu.sh"      // power menu
 ```

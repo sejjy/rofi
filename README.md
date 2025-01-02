@@ -3,7 +3,6 @@
 **Hyprland binds:**
 
 ```properties
-# Rofi:
 bind = $mainMod, A, exec, ~/.config/hypr/scripts/rofi.sh app            # app launcher
 bind = $mainMod, W, exec, ~/.config/hypr/scripts/rofi.sh window         # window switcher
 bind = $mainMod, V, exec, ~/.config/hypr/scripts/rofi.sh clipboard      # clipboard

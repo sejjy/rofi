@@ -13,9 +13,9 @@ options=$(
 option_disabled="Enable Wi-Fi"
 
 # Rofi window override
-override_ssid="entry { placeholder: \"Enter SSID\"; } listview { enabled: false; }"
-override_password="entry { placeholder: \"Enter password\"; } listview { enabled: false; }"
-override_disabled="mainbox { children: [ listview ]; } listview { lines: 1; padding: 6px; }"
+override_ssid="entry { placeholder: \"Enter SSID\"; } listview { lines: 0; padding: 20px 6px; }"
+override_password="entry { placeholder: \"Enter password\"; } listview { lines: 0; padding: 20px 6px; }"
+override_disabled="mainbox { children: [ textbox-custom, listview ]; } listview { lines: 1; padding: 6px 6px 8px; }"
 
 # Prompt for password
 get_password() {
@@ -40,7 +40,7 @@ while true; do
   case "$wifi_status" in
   *"enabled"*)
     selected_option=$(echo "$options"$'\n'"$(wifi_list)" |
-      rofi -dmenu -i -selected-row 1 -config "${config}" -p " " || pkill -x rofi)
+      rofi -dmenu -i -selected-row 1 -config "${config}" -p " " || pkill -x rofi)
     ;;
   *"disabled"*)
     selected_option=$(echo "$option_disabled" |
@@ -57,13 +57,13 @@ while true; do
     exit
     ;;
   "Enable Wi-Fi")
-    notify-send "Scanning for networks..."
+    notify-send "Scanning for networks..." -i "package-installed-outdated"
     nmcli radio wifi on
     nmcli device wifi rescan
     sleep 3
     ;;
   "Disable Wi-Fi")
-    notify-send "Wi-Fi Disabled"
+    notify-send "Wi-Fi Disabled" -i "package-broken"
     nmcli radio wifi off
     exit
     ;;
@@ -82,18 +82,18 @@ while true; do
     if [ -z "$wifi_password" ]; then
       # Without password
       if nmcli device wifi connect "$manual_ssid" | grep -q "successfully"; then
-        notify-send "Connected to \"$manual_ssid\"."
+        notify-send "Connected to \"$manual_ssid\"." -i "package-installed-outdated"
         exit
       else
-        notify-send "Failed to connect to \"$manual_ssid\"."
+        notify-send "Failed to connect to \"$manual_ssid\"." -i "package-broken"
       fi
     else
       # With password
       if nmcli device wifi connect "$manual_ssid" password "$wifi_password" | grep -q "successfully"; then
-        notify-send "Connected to \"$manual_ssid\"."
+        notify-send "Connected to \"$manual_ssid\"." -i "package-installed-outdated"
         exit
       else
-        notify-send "Failed to connect to \"$manual_ssid\"."
+        notify-send "Failed to connect to \"$manual_ssid\"." -i "package-broken"
       fi
     fi
     ;;
@@ -103,10 +103,10 @@ while true; do
 
     if echo "$saved_connections" | grep -qw "$selected_ssid"; then
       if nmcli connection up id "$selected_ssid" | grep -q "successfully"; then
-        notify-send "Connected to \"$selected_ssid\"."
+        notify-send "Connected to \"$selected_ssid\"." -i "package-installed-outdated"
         exit
       else
-        notify-send "Failed to connect to \"$selected_ssid\"."
+        notify-send "Failed to connect to \"$selected_ssid\"." -i "package-broken"
       fi
     else
       # Handle secure network connection
@@ -115,10 +115,10 @@ while true; do
       fi
 
       if nmcli device wifi connect "$selected_ssid" password "$wifi_password" | grep -q "successfully"; then
-        notify-send "Connected to \"$selected_ssid\"."
+        notify-send "Connected to \"$selected_ssid\"." -i "package-installed-outdated"
         exit
       else
-        notify-send "Failed to connect to \"$selected_ssid\"."
+        notify-send "Failed to connect to \"$selected_ssid\"." -i "package-broken"
       fi
     fi
     ;;

@@ -11,7 +11,7 @@ configuration {
 /* window */
 
 window {
-	width:					350px;
+	width:					375px;
 	border:					4px;
 	border-radius:			12px;
 	border-color:			@main-br;
@@ -89,14 +89,14 @@ inputbar {
 }
 
 prompt {
-	padding:				8px 12px;
+	padding:				8px 6px 8px 12px;
 	background-color:		inherit;
 	text-color:				inherit;
 }
 
 entry {
 	placeholder:			"Search";
-	padding:				8px 0;
+	padding:				8px 12px 8px 6px;
 	cursor:					text;
 	background-color:		inherit;
 	text-color:				inherit;

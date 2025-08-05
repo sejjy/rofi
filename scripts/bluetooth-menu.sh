@@ -95,11 +95,11 @@ while true; do
     rofi_override=(
       -theme-str \
         "mainbox { children: [ textbox-custom, listview ]; } \
-        listview { lines: 1; padding: 6px 6px 8px; }"
+        listview { lines: 1; padding: 8px 8px 10px; }"
     )
   fi
 
-  ROFI_PROMPT=" "
+  ROFI_PROMPT=" "
 
   # launch rofi
   rofi_selected=$(
